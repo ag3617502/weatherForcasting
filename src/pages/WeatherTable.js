@@ -49,7 +49,11 @@ const WeatherTable = ({ data, setPage }) => {
             <td>Feels Like (Celsius):</td>
             <td>
               {current.feelslike_c} °C{" "}
-              <img src={current.condition.icon} className="weatherImage" />
+              <img
+                src={current.condition.icon}
+                alt="weatherImage"
+                className="weatherImage"
+              />
             </td>
           </tr>
           <tr>

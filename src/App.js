@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import LocationForm from "./pages/LocationForm";
 import { useEffect, useState } from "react";

@@ -17,17 +17,6 @@ const LocationForm = ({ setPage, setWeatherData }) => {
       .max(180)
       .required("Longitude is required"),
   });
-
-  useEffect(() => {
-    var location = JSON.parse(localStorage.getItem("location"));
-    if (location) {
-      formik.setValues({
-        ...formik.values,
-        latitude: location?.latitude,
-        longitude: location?.longitude,
-      });
-    }
-  }, []);
   const onSubmit = async (values, { setSubmitting }) => {
     if (!values.latitude || !values.longitude) {
       formik.setErrors({
@@ -51,6 +40,23 @@ const LocationForm = ({ setPage, setWeatherData }) => {
       }
     }
   };
+  const formik = useFormik({
+    initialValues,
+    validationSchema,
+    onSubmit,
+  });
+
+  useEffect(() => {
+    var location = JSON.parse(localStorage.getItem("location"));
+    if (location) {
+      formik.setValues({
+        ...formik.values,
+        latitude: location?.latitude,
+        longitude: location?.longitude,
+      });
+    }
+  }, []);
+
   const getCurrentLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -70,12 +76,6 @@ const LocationForm = ({ setPage, setWeatherData }) => {
       console.error("Geolocation is not supported by this browser.");
     }
   };
-
-  const formik = useFormik({
-    initialValues,
-    validationSchema,
-    onSubmit,
-  });
 
   return (
     <form onSubmit={formik.handleSubmit}>
