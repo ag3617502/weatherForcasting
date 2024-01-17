@@ -70,7 +70,8 @@ const LocationForm = ({ setPage, setWeatherData }) => {
         },
         (error) => {
           console.error("Error getting location:", error.message);
-        }
+        },
+        { enableHighAccuracy: true }
       );
     } else {
       console.error("Geolocation is not supported by this browser.");
