@@ -45,7 +45,6 @@ const LocationForm = ({ setPage, setWeatherData }) => {
     validationSchema,
     onSubmit,
   });
-
   useEffect(() => {
     var location = JSON.parse(localStorage.getItem("location"));
     if (location) {
@@ -55,6 +54,7 @@ const LocationForm = ({ setPage, setWeatherData }) => {
         longitude: location?.longitude,
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getCurrentLocation = () => {
